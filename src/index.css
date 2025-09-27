@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin '../hero.js';
+@plugin "daisyui";
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.header{
+    box-shadow: 0 2px 5px rgba(74, 70, 70, 0.648) ;
+}
+.gradient-color{
+   @apply bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent
+}
+
+.active{
+    position: relative;
+    color: red;
+    background: linear-gradient(to right, #60a5fa, #f472b6);    background-clip: text;
+    color: transparent;
+    transition: 0.3s ease-in-out;
+}  
+.active::before {
+  content: "";
+  background: linear-gradient(to right, #60a5fa, #f472b6);  display: block;
+  position: absolute;
+  bottom: -10px;   /* sits just below text */
+  left: 50%;
+  width: 80%;    /* adjust as needed */
+  height: 2px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Optional: Animation for the underline */
+@keyframes slideIn {
+    from {
+        width: 0%;
+        opacity: 0;
+    }
+    to {
+        width: 80%;
+        opacity: 1;
+    }
+}
+/* Override autofill background and text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: rgb(31, 41, 55) !important; /* gray-800 */
+    caret-color: rgb(31, 41, 55) !important;
+}
+
+/* Dark mode autofill */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset !important; /* gray-900 */
+    -webkit-text-fill-color: rgb(229, 231, 235) !important; /* gray-200 */
+    caret-color: rgb(229, 231, 235) !important;
+}
