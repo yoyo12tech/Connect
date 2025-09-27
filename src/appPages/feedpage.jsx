@@ -43,7 +43,7 @@ const Feedback = () => {
               <CreatePost getAllPosts={getPosts}/>
               <div className='h-[2px] w-11/12 sm:w-3/4 md:w-5/12 2xl:w-4/12   mx-auto bg-gradient-to-t from-blue-400 to-pink-400 rounded-4xl'></div>
               <div className="pb-12">
-                  {posts.reverse().map((post) =>
+                  {posts.map((post) =>
                       (
                           <Post key={post._id} getPosts={getPosts} post={post}/>
                       )
