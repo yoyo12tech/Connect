@@ -1,33 +1,58 @@
-import {createContext,useState,useEffect} from 'react'
+import { createContext, useState, useEffect } from "react";
 import { getLoggedUserDataApi } from "../services/authServices";
 
+export const authContext = createContext();
 
+export default function AuthContextProvider({ children }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [user, setUser] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
 
-export const authContext = createContext(); 
+  useEffect(() => {
+    let pollInterval;
 
-export default function AuthContextProvider({children}){
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token")!=null)
-    const [userId, setUserId] = useState('');
-    const [user, setUser] = useState(null)
-    const [profilePicture, setprofilePicture] = useState(null)
-    useEffect(() => {
-      async function getUserInfo(){
-        const data = await getLoggedUserDataApi();
-        if(data.message=="success"){
-            setUserId(data.user._id)
+    const checkLoginAndFetch = async () => {
+      const token = localStorage.getItem("token");
+
+      if (token && !isLoggedIn) {
+        setIsLoggedIn(true);
+      }
+
+      if (token && !user) {
+        try {
+          const data = await getLoggedUserDataApi();
+          if (data.message === "success") {
+            setUserId(data.user._id);
             setUser(data.user);
-            setprofilePicture(data.user.photo)
+            setProfilePicture(data.user.photo);
+            clearInterval(pollInterval);
+          }
+        } catch (err) {
+          console.error("Failed to fetch user:", err);
         }
       }
-      getUserInfo()
-    }, [])
-    
-    
+    };
 
+    checkLoginAndFetch();
 
+    pollInterval = setInterval(checkLoginAndFetch, 2000);
 
-    
-    return (<authContext.Provider value={{isLoggedIn, setIsLoggedIn,userId,user,profilePicture,setprofilePicture}}>
-        {children}
-    </authContext.Provider>)
+    return () => clearInterval(pollInterval);
+  }, []);
+
+  return (
+    <authContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        userId,
+        user,
+        profilePicture,
+        setProfilePicture,
+      }}
+    >
+      {children}
+    </authContext.Provider>
+  );
 }
