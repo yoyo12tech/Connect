@@ -23,9 +23,9 @@ export default function stats(){
         :
         <>
             <div className="flex justify-center items-center mt-[13dvh] lg:mt-[31dvh] lg:w-calc(100% - 15rem) lg:ml-60 flex-col">
-                <h1 className=" bg-gradient-to-bl from-pink-500 dark:from-pink-600 to-blue-500 dark:to-blue-600 bg-clip-text text-transparent  md:text-4xl text-3xl font-bold mb-8 p-2 h-fit  ">Account Analytics</h1>
-                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 flex flex-col lg:flex-row gap-0">
-                    <div className="stat py-4 lg:py-6">
+                <h1 className=" text-[#F43098]  md:text-4xl text-3xl font-bold mb-8 p-2 h-fit  ">Account Analytics</h1>
+                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 stats-vertical lg:stats-horizontal">
+                    <div className="stat">
                         <div className="stat-figure text-primary">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ export default function stats(){
                         <div className="text-gray-800 dark:text-gray-300 stat-desc">21% more than last month</div>
                     </div>
 
-                    <div className="stat py-4 lg:py-6">
+                    <div className="stat">
                         <div className="stat-figure text-secondary">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ export default function stats(){
                         <div className="  text-gray-800 dark:text-gray-300 stat-desc">21% more than last month</div>
                     </div>
 
-                   <div className="stat py-4 lg:py-6">
+                   <div className="stat">
                         <div className="stat-figure text-secondary">
                             <div className="avatar avatar-online">
                                 <div className="w-16 rounded-full  bg-gradient-to-r  from-blue-500 to-pink-500 p-[2px] flex justify-center items-center">
