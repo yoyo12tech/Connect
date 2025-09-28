@@ -24,7 +24,7 @@ export default function stats(){
         <>
             <div className="flex justify-center items-center mt-[13dvh] lg:mt-[31dvh] lg:w-calc(100% - 15rem) lg:ml-60 flex-col">
                 <h1 className=" bg-gradient-to-bl from-pink-500 dark:from-pink-600 to-blue-500 dark:to-blue-600 bg-clip-text text-transparent  md:text-4xl text-3xl font-bold mb-8 p-2 h-fit  ">Account Analytics</h1>
-                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 lg:flex-row flex-col flex justify-center items-center ">
+                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 stats-vertical lg:stats-horizontal">
                     <div className="stat">
                         <div className="stat-figure text-primary">
                         <svg
