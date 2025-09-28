@@ -24,8 +24,8 @@ export default function stats(){
         <>
             <div className="flex justify-center items-center mt-[13dvh] lg:mt-[31dvh] lg:w-calc(100% - 15rem) lg:ml-60 flex-col">
                 <h1 className=" bg-gradient-to-bl from-pink-500 dark:from-pink-600 to-blue-500 dark:to-blue-600 bg-clip-text text-transparent  md:text-4xl text-3xl font-bold mb-8 p-2 h-fit  ">Account Analytics</h1>
-                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 stats-vertical lg:stats-horizontal">
-                    <div className="stat">
+                <div className="stats shadow-lg dark:shadow-gray-900 shadow-gray-200 flex flex-col lg:flex-row gap-0">
+                    <div className="stat py-4 lg:py-6">
                         <div className="stat-figure text-primary">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -41,12 +41,12 @@ export default function stats(){
                             ></path>
                         </svg>
                         </div>
-                        <div className="text-gray-800 dark:text-gray-300 stat-title">Total Likes</div>
-                        <div className="stat-value text-primary">25.6K</div>
+                        <div className="text-gray-800 dark:text-gray-300 stat-title mb-1">Total Likes</div>
+                        <div className="stat-value text-primary mb-1">25.6K</div>
                         <div className="text-gray-800 dark:text-gray-300 stat-desc">21% more than last month</div>
                     </div>
 
-                    <div className="stat">
+                    <div className="stat py-4 lg:py-6">
                         <div className="stat-figure text-secondary">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -62,12 +62,12 @@ export default function stats(){
                             ></path>
                         </svg>
                         </div>
-                        <div className=" text-gray-800 dark:text-gray-300 stat-title">Page Views</div>
-                        <div className="stat-value text-secondary">2.6M</div>
+                        <div className=" text-gray-800 dark:text-gray-300 stat-title mb-1">Page Views</div>
+                        <div className="stat-value text-secondary mb-1">2.6M</div>
                         <div className="  text-gray-800 dark:text-gray-300 stat-desc">21% more than last month</div>
                     </div>
 
-                   <div className="stat">
+                   <div className="stat py-4 lg:py-6">
                         <div className="stat-figure text-secondary">
                             <div className="avatar avatar-online">
                                 <div className="w-16 rounded-full  bg-gradient-to-r  from-blue-500 to-pink-500 p-[2px] flex justify-center items-center">
@@ -75,8 +75,8 @@ export default function stats(){
                                 </div>
                             </div>
                         </div>
-                        <div className="stat-value text-secondary">+12</div>
-                        <div className="stat-title text-gray-800 dark:text-gray-300">New Followers</div>
+                        <div className="stat-value text-secondary mb-1">+12</div>
+                        <div className="stat-title text-gray-800 dark:text-gray-300 mb-1">New Followers</div>
                         <div className="stat-desc text-secondary ">This month</div>
                     </div>
 
