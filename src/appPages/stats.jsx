@@ -75,7 +75,7 @@ export default function stats(){
                             </div>
                         </div>
                         <div className="stat-value text-secondary mb-1">+12</div>
-                        <div className="stat-title text-gray-800 dark:text-gray-300 mb-1">New Followers</div>
+                        <div className="stat-title text-gray-800 dark:text-gray-300 mb-1 mr-4">New Followers</div>
                         <div className="stat-desc text-secondary ">This month</div>
                     </div>
 
