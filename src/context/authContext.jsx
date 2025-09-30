@@ -19,7 +19,7 @@ export default function AuthContextProvider({ children }) {
         setIsLoggedIn(true);
       }
 
-      if (token && !user) {
+      if (token) {
         try {
           const data = await getLoggedUserDataApi();
           if (data.message === "success") {
