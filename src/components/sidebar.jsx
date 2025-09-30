@@ -12,7 +12,7 @@ const UserProfileSidebar = () => {
   const [laoding, setLaoding] = useState(false)
   const [error, seterror] = useState(false)
   const imgRef = useRef(null)
-  const {user,profilePicture,setprofilePicture} = useContext(authContext) ;
+  const {user,profilePicture,setProfilePicture} = useContext(authContext) ;
   const [img, setImg] = useState(user?.photo)
   const [activeLink, setActiveLink] = useState("dashboard");
   const navigate = useNavigate();
@@ -44,15 +44,18 @@ const UserProfileSidebar = () => {
     formData.append("photo",file);
     setLaoding(true)
     const res = await uploadProfilePic(formData)
+    setLaoding(false);
     if(res.message == "success"){
       setImg(URL.createObjectURL(file))
-      setprofilePicture(URL.createObjectURL(file))
+      setProfilePicture(URL.createObjectURL(file))
       seterror(false)
+
+
     }
     else{
       seterror(true)
     }
-    setLaoding(false)
+
 
   }
   useEffect(() => {
