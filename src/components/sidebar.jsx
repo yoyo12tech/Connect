@@ -159,7 +159,7 @@ const UserProfileSidebar = () => {
           </nav>
 
           <div className="mt-auto">
-            <p className="text-xs text-gray-800 dark:text-gray-300 text-start ml-3">
+            <p className="text-[15px] text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 yoyo12tech
             </p>
           </div>
