@@ -22,7 +22,7 @@ function Login(){
     });
     const [loading, setloading] = useState(null)
     const navigate = useNavigate()
-    const{setIsLoggedIn}=useContext(authContext);
+    const{setIsLoggedIn,refreshUser}=useContext(authContext);
     const [error, setError] = useState(null)
 
 
@@ -41,6 +41,7 @@ function Login(){
         else{
             localStorage.setItem("token", data.token);
             setIsLoggedIn(true);
+            await refreshUser();
             navigate('/')
             }
 
