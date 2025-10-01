@@ -9,9 +9,9 @@ export default function postStats({post,setShowComments,showComments,commentCoun
   const [breaker, setBreaker] = useState(true);
   const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 51));
   const [shareCount, setShareCount] = useState(Math.floor(Math.random() * 11));
-
-  const link = `http://localhost:5173/post/${post.id}`;
-;
+  const baseUrl = import.meta.env.VITE_PUBLIC_SITE_URL || window.location.origin;
+  const postId = post?._id || post?.id;
+  const link = `${baseUrl}/post/${postId}`;
 
   const handleLike = () => {
       setLiked(!liked);
@@ -24,11 +24,12 @@ export default function postStats({post,setShowComments,showComments,commentCoun
       setBreaker(false);
     }
     setShared(true);
-    navigator.clipboard.writeText(link);
-    setTimeout(()=>{
-      setShared(false)
-    },2000)
-
+    try {
+      navigator.clipboard.writeText(link);
+    } catch(e) {
+      console.error('Clipboard failed', e);
+    }
+    setTimeout(()=>{ setShared(false) },2000)
     };
 
     
