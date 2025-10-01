@@ -41,7 +41,7 @@ export default function Header() {
           </NavbarItem>
 
           <NavbarItem>
-            <Link to={"/account"} aria-current="page" className={`   text-xl font-bold transition duration-700 ${(location.pathname!="/")? " active":""}`}>
+            <Link to={"/account"} aria-current="page" className={` text-xl font-bold transition duration-700 ${(["/account","/user/stats","/user/password"].some(p=>location.pathname.startsWith(p))) ? " active" : ""}`}>
               Profile
             </Link>
           </NavbarItem>
