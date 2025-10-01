@@ -1,6 +1,5 @@
 import axios from "axios"
-
-const baseUrl = "https://linked-posts.routemisr.com/"
+const baseUrl =  import.meta.env.VITE_API_BASE
 
 export async function getAllPosts()
 {
