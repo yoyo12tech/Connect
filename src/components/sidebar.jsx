@@ -115,11 +115,11 @@ const UserProfileSidebar = () => {
 
 
             <div className="text-center">
-              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-2">
+              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-3">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{User.name}</h2>
               </div>
               
-              <div className="flex items-center justify-center space-x-2 mb-2">
+              <div className="flex items-center justify-center space-x-2 mb-3">
                 <i className="fa-regular fa-envelope gradient-color text-md"></i>
                 <p className="text-sm text-gray-900 dark:text-gray-100">{User.email}</p>
               </div>
@@ -159,7 +159,7 @@ const UserProfileSidebar = () => {
           </nav>
 
           <div className="mt-auto">
-            <p className="text-sm text-gray-800 dark:text-gray-300 text-start ml-3">
+            <p className="text-xs text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 yoyo12tech
             </p>
           </div>
