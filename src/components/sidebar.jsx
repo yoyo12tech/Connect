@@ -115,11 +115,11 @@ const UserProfileSidebar = () => {
 
 
             <div className="text-center">
-              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-3">
+              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-1.5">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{User.name}</h2>
               </div>
               
-              <div className="flex items-center justify-center space-x-2 mb-3">
+              <div className="flex items-center justify-center space-x-2 mb-1.5">
                 <i className="fa-regular fa-envelope gradient-color text-md"></i>
                 <p className="text-sm text-gray-900 dark:text-gray-100">{User.email}</p>
               </div>
