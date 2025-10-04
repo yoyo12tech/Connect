@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <>
       <Navbar shouldHideOnScroll className="py-0 overflow-hidden shadow-md shadow-gray-300/75 dark:shadow-gray-800/75 position-relative z-[600] ">
-        <NavbarBrand >
+        <NavbarBrand className="  cursor-pointer" onClick={()=>navigate('/')} >
           <i className=" fa-solid fa-circle-nodes mt-1 mr-1 p-1 fa-spin duration-1000  font-bold text-2xl bg-gradient-to-tr from-blue-400 to-pink-400 text-transparent bg-clip-text"></i>
           <p className="  font-bold text-2xl  bg-gradient-to-tr from-blue-400 to-pink-400 text-transparent bg-clip-text">Connect</p>
         </NavbarBrand>
