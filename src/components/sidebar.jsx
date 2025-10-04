@@ -29,7 +29,7 @@ const UserProfileSidebar = () => {
 
   let navigationLinks = [
       { id: "dashboard", icon: <FiEdit  />, label: " My Posts",dest:'account' },
-      { id: "notifications", icon: <FiBarChart2  />, label: "Inisghts",dest:'user/stats' },
+      { id: "notifications", icon: <FiBarChart2  />, label: "Insights",dest:'user/stats' },
       { id: "settings", icon: <FiLock />, label: "Password",dest:'user/password' }
     ];
 
