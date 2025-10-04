@@ -138,9 +138,9 @@ export default function CreatePost({post=null,getAllPosts,mode="post",setmode=nu
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
           <div className="flex items-center space-x-4 mb-4">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <BsImageFill className="text-gray-500 hover:text-blue-500" />
-              <span className="text-sm text-gray-500 hover:text-blue-500">Add Image</span>
+            <label className="flex items-center space-x-2 cursor-pointer text-gray-500 hover:text-blue-500 ">
+              <BsImageFill className= ""/>
+              <span className="text-sm ">Add Image</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -151,7 +151,7 @@ export default function CreatePost({post=null,getAllPosts,mode="post",setmode=nu
             </label>
             <button
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              className="flex items-center space-x-2 text-gray-500 hover:text-yellow-400"
+              className="flex items-center space-x-2 cursor-pointer text-gray-500 hover:text-yellow-400"
             >
               <FaSmile />
               <span className="text-sm">Emoji</span>

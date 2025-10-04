@@ -73,8 +73,8 @@ export default function postStats({post,setShowComments,showComments,commentCoun
                 className={`${saved ? 'text-blue-700' : 'text-gray-500 dark:text-gray-300'}`}
             >
             <FaBookmark />
-            </motion.button>
-            {shared ? <p className='text-md mt-1'>Share Link copied!</p> : ""}
+            </motion.button> 
+            {shared ? <p className='text-md mt-1'>Share link ready ✓</p> : ""}
 
           </div>
           
