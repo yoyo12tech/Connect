@@ -21,7 +21,7 @@ function Account(){
         refetch();
         console.log("i ran")
     }
-    }, [])
+    }, [profilePicture])
 
 
     return(
