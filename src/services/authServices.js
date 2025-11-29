@@ -75,6 +75,17 @@ export async function getUserPosts(userId){
     }
 
 } 
+
+export async function getMyPosts(userId){
+    const { data } = await axios.get(baseUrl+'users/'+userId+'/posts',{
+        headers:{
+            token:localStorage.getItem("token")
+        }
+    })
+    console.log(data);
+    return data;
+
+} 
 export async function changePassword(formData){
     try{
         const { data } = await axios.patch(baseUrl+'users/change-password',formData,{

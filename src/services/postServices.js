@@ -22,7 +22,7 @@ export async function getDaPosts(){
             headers:{
                 token:localStorage.getItem("token")
             }
-    })
+        })
 
     return data;
 }

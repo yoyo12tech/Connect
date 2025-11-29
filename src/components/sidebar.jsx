@@ -160,7 +160,7 @@ const UserProfileSidebar = () => {
 
           <div className="mt-auto">
             <p className="text-[15px] text-gray-800 dark:text-gray-300 text-start ml-3">
-              ©2025 yoyo12tech
+              ©2025 <a className="  transition-all duration-300 ease-in-out hover:dark:text-purple-400 hover:text-blue-400" href="https://github.com/yoyo12tech">yoyo12tech</a>
             </p>
           </div>
         </div>

@@ -54,7 +54,7 @@ function ChangePass(){
     return(
         <>
             <div className="flex flex-col justify-center mx-auto  md:w-1/2 w-11/12  h-full align-items-center align-center my-auto mt-[18dvh] lg:ml-60 ">
-                <h1 className="md:text-5xl text-4xl w-full h-21 md:mb-2 bg-gradient-to-b from-blue-400 to-pink-400 lg:ml-60   bg-clip-text  text-center text-transparent fw-bold ">Reset Password</h1>
+                <h1 className="md:text-5xl text-4xl w-full h-21 md:mb-2 bg-gradient-to-b from-blue-500 to-pink-500 lg:ml-60   bg-clip-text  text-center text-transparent fw-bold ">Reset Password</h1>
                     <form onSubmit={handleSubmit(HandleChangePass)} className=" flex flex-col justify-center align-items-center *:mb-4 lg:ml-60  w-full mx-auto px-1 md:px-25">
                         
                         <Input className="!text-gray-800 dark:!text-gray-200  " isInvalid={Boolean(errors.password)} errorMessage={errors.password?.message}  label="Old Password" type="password" variant="bordered" {...register('password')} />

@@ -1,59 +1,43 @@
-import {useState,useEffect,useContext} from "react";
-import { getUserPosts } from '../services/authServices';
+import {useEffect,useContext} from "react";
+import { getUserPosts,getMyPosts } from '../services/authServices';
 import {authContext} from '../context/authContext'
 import Loading from '../components/loading'
 import Post from '../components/post';
+import {useQuery} from '@tanstack/react-query'
 
 
 function Account(){
-    const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(true)
     const{userId,profilePicture}=useContext(authContext);
 
+    const {data,isLoading,error,refetch} = useQuery({
+        queryKey:["myPosts",userId],
+        queryFn: () => getMyPosts(userId),
+        enabled: !!(userId && profilePicture),
+        onError: err => console.log("error",err)
+    })
     
-    async function getPosts(id) {
-        const data= await getUserPosts(id);
-        setLoading(false);
-        if(data.message =="success"){
-            setPosts(data.posts.reverse());
-            console.log(data)
-        }
-        else{
-            console.log(data);
-        }
+    useEffect(() => {
+    if(profilePicture){
+        refetch();
+        console.log("i ran")
     }
-    async function handleUserPosts(){
-        
-        if(userId){
-            await getPosts(userId);
-        }
-    }
-    
-    
-    
-      useEffect(() => {
-        if(userId){
-            getPosts(userId);
-        }
-      }, [userId,profilePicture])
+    }, [])
+
+
     return(
-        loading ?
-        <div className="mt-60">
-            <Loading/>
-        </div>
+        isLoading ?
+            <div className="mt-60">
+                <Loading/>
+            </div>
         :
         <div className="pb-12">
-            {posts.map((post) =>
+            {data?.posts?.map((post) =>
                 (
-                    <Post key={post._id} getPosts={handleUserPosts} post={post}/>
+                    <Post key={post._id} getPosts={refetch} post={post}/>
                 )
             )
             }
         </div>
-    
-
-
-
     )
 }
 

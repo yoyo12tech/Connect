@@ -10,13 +10,14 @@ const Feedback = () => {
 
   const {data,isLoading,error,refetch} = useQuery({
     queryKey:["posts"],
-    queryFn:getDaPosts
+    queryFn:getDaPosts,
+    onError: err=> console.log("failed to fetch posts:",err)
+    
   })
-
-
 
   return (
     <>
+        {error? <h1>error</h1>:""}
         {isLoading ? 
             <div className='mt-56'>
                 <Loading/>
