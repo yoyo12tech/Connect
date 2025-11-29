@@ -17,6 +17,15 @@ export async function getAllPosts()
     }
 }
 
+export async function getDaPosts(){
+    const{data} = await axios.get(baseUrl + "posts?sort=-createdAt",{
+            headers:{
+                token:localStorage.getItem("token")
+            }
+    })
+
+    return data;
+}
 export async function getSinglePost(postId)
 {
     try{
