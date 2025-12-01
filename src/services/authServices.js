@@ -83,7 +83,8 @@ export async function getMyPosts(userId){
         }
     })
     if (data.posts) {
-        data.posts = data.posts.slice().reverse(); 
+         data.posts = [...data.posts].reverse(); // copy and reverse; 
+         console.log(data.posts[1])
     }
     console.log(data);
     return data;
