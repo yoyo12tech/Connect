@@ -82,10 +82,6 @@ export async function getMyPosts(userId){
             token:localStorage.getItem("token")
         }
     })
-    if (data.posts) {
-         data.posts = [...data.posts].reverse(); // copy and reverse; 
-         console.log(data.posts[1])
-    }
     console.log(data);
     return data;
 

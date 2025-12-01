@@ -31,7 +31,7 @@ function Account(){
             </div>
         :
         <div className="pb-12">
-            {data?.posts.reverse()?.map((post) =>
+            {data?.posts.slice().reverse()?.map((post) =>
                 (
                     <Post key={post._id} getPosts={refetch} post={post}/>
                 )
