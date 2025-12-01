@@ -97,9 +97,9 @@ Service files:
 Centralize request logic & error handling. Adjust `axios` base URL with env variable.
 
 ## Data Fetching Strategy
-- **React Query (`useQuery`)** is currently implemented specifically for:
-  - `getPosts` (Feed)
-  - `getUserPosts` (Profile)
+- **React Query** is currently implemented specifically for:
+  - `getPosts` (Feed) - uses `useInfiniteQuery`.
+  - `getUserPosts` (Profile) - uses `useQuery`.
   - *Reasoning:* These endpoints return large datasets where caching and background re-fetching significantly improve performance.
 - Note: `useMutation` is not yet implemented. Other endpoints and write operations currently rely on standard Axios calls.
 
