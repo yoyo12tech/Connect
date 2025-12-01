@@ -17,14 +17,17 @@ export async function getAllPosts()
     }
 }
 
-export async function getDaPosts(){
-    const{data} = await axios.get(baseUrl + "posts?sort=-createdAt",{
-            headers:{
-                token:localStorage.getItem("token")
-            }
-        })
+export async function getDaPosts({ pageParam = 1 }) {
+  const { data } = await axios.get(
+    baseUrl + `posts?sort=-createdAt&page=${pageParam}`,
+    {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
+  );
 
-    return data;
+  return data; // must include { paginationInfo, posts }
 }
 export async function getSinglePost(postId)
 {

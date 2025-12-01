@@ -21,6 +21,7 @@ A modern social networking single-page application built with React 19 + Vite, T
 - Tailwind CSS 4 + DaisyUI components
 - HeroUI & Lucide / FontAwesome icons
 - React Hook Form + Zod (schemas in `src/schema`)
+- React Query (TanStack Query) - for specific data fetching
 - Axios (API layer)
 - date-fns (date formatting)
 - Framer Motion (animations potential)
@@ -94,6 +95,13 @@ Service files:
 - `commentService.js`
 
 Centralize request logic & error handling. Adjust `axios` base URL with env variable.
+
+## Data Fetching Strategy
+- **React Query (`useQuery`)** is currently implemented specifically for:
+  - `getPosts` (Feed)
+  - `getUserPosts` (Profile)
+  - *Reasoning:* These endpoints return large datasets where caching and background re-fetching significantly improve performance.
+- Note: `useMutation` is not yet implemented. Other endpoints and write operations currently rely on standard Axios calls.
 
 ## Future Improvements
 - Real analytics integration
