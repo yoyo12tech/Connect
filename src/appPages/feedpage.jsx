@@ -12,7 +12,8 @@ const Feedback = () => {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
+    refetch
   } = useInfiniteQuery({
     queryKey: ["posts"],
     queryFn: getDaPosts,
@@ -55,12 +56,12 @@ const Feedback = () => {
 
   return (
     <>
-      <CreatePost />
+      <CreatePost getAllPosts={refetch} />
 
       <div className="pb-12">
         {data.pages.flatMap((page) => //flatMap to make all the diffrent pages arrays into 1 arrya
           page.posts.map((post) => (
-            <Post key={post._id} post={post} />
+            <Post key={post._id} post={post} getPosts={refetch} />
           ))
         )}
 
