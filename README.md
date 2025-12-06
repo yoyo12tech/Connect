@@ -99,7 +99,7 @@ Centralize request logic & error handling. Adjust `axios` base URL with env vari
 ## Data Fetching Strategy
 - **React Query** is currently implemented specifically for:
   - `getPosts` (Feed) - uses `useInfiniteQuery`.
-  - `getUserPosts` (Profile) - uses `useQuery`.
+  - `getUserPosts` (Profile) - uses `useQuery`.   
   - *Reasoning:* These endpoints return large datasets where caching and background re-fetching significantly improve performance.
 - **Mutations (`useMutation`)**:
   - Implemented in `CreatePost` for creating and editing posts.
