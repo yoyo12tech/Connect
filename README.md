@@ -101,7 +101,10 @@ Centralize request logic & error handling. Adjust `axios` base URL with env vari
   - `getPosts` (Feed) - uses `useInfiniteQuery`.
   - `getUserPosts` (Profile) - uses `useQuery`.
   - *Reasoning:* These endpoints return large datasets where caching and background re-fetching significantly improve performance.
-- Note: `useMutation` is not yet implemented. Other endpoints and write operations currently rely on standard Axios calls.
+- **Mutations (`useMutation`)**:
+  - Implemented in `CreatePost` for creating and editing posts.
+  - On success, it triggers `queryClient.invalidateQueries({ queryKey: ["posts"] })` to automatically refresh the feed without a page reload.
+- Other endpoints and write operations currently rely on standard Axios calls.
 
 ## Future Improvements
 - Real analytics integration
