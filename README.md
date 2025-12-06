@@ -103,7 +103,10 @@ Centralize request logic & error handling. Adjust `axios` base URL with env vari
   - *Reasoning:* These endpoints return large datasets where caching and background re-fetching significantly improve performance.
 - **Mutations (`useMutation`)**:
   - Implemented in `CreatePost` for creating and editing posts.
-  - On success, it triggers `queryClient.invalidateQueries({ queryKey: ["posts"] })` to automatically refresh the feed without a page reload.
+  - **Smart Invalidation:** On success, it checks the current route (`location.pathname`) to decide which cache to clear:
+    - If on Home (`/`), it invalidates `["posts"]` (Feed).
+    - If on Profile, it invalidates `["myPosts"]`.
+    - This ensures the user sees their new/edited post immediately without reloading the page.
 - Other endpoints and write operations currently rely on standard Axios calls.
 
 ## Future Improvements

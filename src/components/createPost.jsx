@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import {useLocation} from 'react-router-dom'
 import { FaSmile } from 'react-icons/fa';
 import { Button } from '@heroui/react';
 import { BsImageFill } from 'react-icons/bs';
@@ -8,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export default function CreatePost({ post = null, getAllPosts, mode = "post", setmode = null }) {
   const queryClient = useQueryClient();
+  const location = useLocation()
 
   const [postContent, setPostContent] = useState('');
   const [image, setImage] = useState(null);
@@ -30,9 +32,16 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
 
     onSuccess: async (data) => {
       if (data.message === "success") {
+        if(location.pathname === "/"){
+            queryClient.invalidateQueries({ queryKey: ["posts"] });
+            console.log("i ran 1")
+        }
+        else{
+            queryClient.invalidateQueries({ queryKey: ["myPosts"] });
+            console.log("i ran 2")
 
-        queryClient.invalidateQueries({ queryKey: ["posts"] });
 
+        }
        
         setPostContent('');
         handleRemoveImage();
