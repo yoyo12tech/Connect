@@ -1,17 +1,20 @@
 import {useState} from 'react'
 import { FaHeart, FaComment, FaShare, FaBookmark,  } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+import notFoundPage from '../appPages/404page';
 
 export default function postStats({post,setShowComments,showComments,commentCount}) {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [shared, setShared] = useState(false);
   const [breaker, setBreaker] = useState(true);
   const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 51));
   const [shareCount, setShareCount] = useState(Math.floor(Math.random() * 11));
   const baseUrl = import.meta.env.VITE_PUBLIC_SITE_URL || window.location.origin;
   const postId = post?._id || post?.id;
   const link = `${baseUrl}/post/${postId}`;
+  const notify = () => toast.info("Share Link copied !");
+
 
   const handleLike = () => {
       setLiked(!liked);
@@ -23,13 +26,12 @@ export default function postStats({post,setShowComments,showComments,commentCoun
       setShareCount(shareCount+1);
       setBreaker(false);
     }
-    setShared(true);
+    notify();
     try {
       navigator.clipboard.writeText(link);
     } catch(e) {
       console.error('Clipboard failed', e);
     }
-    setTimeout(()=>{ setShared(false) },2000)
     };
 
     
@@ -69,12 +71,11 @@ export default function postStats({post,setShowComments,showComments,commentCoun
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={handleSave}
+                onClick={[handleSave,notify]}
                 className={`${saved ? 'text-blue-700' : 'text-gray-500 dark:text-gray-300'}`}
             >
             <FaBookmark />
             </motion.button> 
-            {shared ? <p className='text-md mt-1'>Share link ready ✓</p> : ""}
 
           </div>
           

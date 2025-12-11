@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { useContext } from 'react';
+import {authContext} from "./context/authContext"
 import FeedpagePage from './appPages/feedpage';
 import AccountPage from './appPages/account';
 import NotFoundPage from './appPages/404page';
@@ -17,6 +18,7 @@ import ProtectedRoute from './protectedRoutes/ProtectedRoute'
 import ProtectedAuthRoute from './protectedRoutes/ProtectedAuthRoute';
 import { useEffect } from 'react';
 import AccountLayout from './appPages/accountLayout';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
   {
@@ -63,21 +65,26 @@ const router = createBrowserRouter([
 
 
 function App() {
+  const {theme,setTheme} = useContext(authContext)
   
   useEffect(()=>{
     if(!("mode" in localStorage)){
       if(window.matchMedia("(prefers-color-scheme:dark)").matches){
           document.documentElement.classList.add("dark");
           localStorage.setItem("mode","dark");
+          setTheme("dark")
         }
       }
     else{
       if(localStorage.getItem("mode")){
         if(localStorage.getItem("mode")=="dark"){
-           document.documentElement.classList.add("dark")}
+           document.documentElement.classList.add("dark")
+           setTheme("dark")
+          }
         }
         else{
-          document.documentElement.classList.remove("dark")}
+          document.documentElement.classList.remove("dark")
+          setTheme("")}
         }
       },[])
     
@@ -86,6 +93,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer theme={theme === "dark" ? "dark" : "light"} />
     </>
   )
 }

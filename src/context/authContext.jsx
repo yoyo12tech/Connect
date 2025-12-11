@@ -7,6 +7,7 @@ export default function AuthContextProvider({ children }) {
   const initialToken = localStorage.getItem("token");
   const [isLoggedIn, setIsLoggedIn] = useState(!!initialToken);
   const [authReady, setAuthReady] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("mode"))
   const [userId, setUserId] = useState('');
   const [user, setUser] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
@@ -54,6 +55,8 @@ export default function AuthContextProvider({ children }) {
         profilePicture,
         setProfilePicture,
         refreshUser: fetchUser,
+        theme,
+        setTheme
       }}
     >
       {children}
