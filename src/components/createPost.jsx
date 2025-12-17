@@ -106,7 +106,7 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
               lastModified: Date.now()
             });
             resolve(convertedFile);
-          }, 'image/jpeg', 0.90); // 
+          }, 'image/jpeg', 0.99); // 
         };
         
         img.onerror = () => {
