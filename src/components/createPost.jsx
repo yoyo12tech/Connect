@@ -66,28 +66,66 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
     if (fileInputRef.current) fileInputRef.current.value = '';
   }
 
-  async function convertImageToJPG(file) {
+  async function processImage(file) {
     return new Promise((resolve) => {
       const reader = new FileReader();
+      
       reader.onload = (e) => {
         const img = new Image();
+        
         img.onload = () => {
+          // Create canvas
           const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
           const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
           
+          // Calculate new dimensions (max 1920px on longest side)
+          let width = img.width;
+          let height = img.height;
+          const maxSize = 1920;
+          
+          if (width > maxSize || height > maxSize) {
+            if (width > height) {
+              height = (height / width) * maxSize;
+              width = maxSize;
+            } else {
+              width = (width / height) * maxSize;
+              height = maxSize;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          // Fill white background (for transparent images)
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, width, height);
+          
+          // Draw image
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Convert to blob
           canvas.toBlob((blob) => {
-            const convertedFile = new File([blob], file.name.replace(/\.[^/.]+$/, '.jpg'), {
+            const newFileName = file.name.replace(/\.[^/.]+$/, '') + '.jpg';
+            const convertedFile = new File([blob], newFileName, {
               type: 'image/jpeg',
               lastModified: Date.now()
             });
             resolve(convertedFile);
-          }, 'image/jpeg', 0.9);
+          }, 'image/jpeg', 0.85); // 85% quality for good balance
         };
+        
+        img.onerror = () => {
+          // If image fails to load, try to use original file
+          resolve(file);
+        };
+        
         img.src = e.target.result;
       };
+      
+      reader.onerror = () => {
+        resolve(file);
+      };
+      
       reader.readAsDataURL(file);
     });
   }
@@ -96,14 +134,14 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
     if (e.target.files.length !== 0) {
       const file = e.target.files[0];
       
-      // Convert image to JPG format if it's not already PNG or JPG
-      if (!file.type.match(/image\/(png|jpeg|jpg)/)) {
-        const convertedFile = await convertImageToJPG(file);
-        setImage(convertedFile);
-        setImagePreview(URL.createObjectURL(convertedFile));
-      } else {
-        setImage(file);
-        setImagePreview(URL.createObjectURL(file));
+      try {
+        // Process ALL images to ensure compatibility and smaller size
+        const processedFile = await processImage(file);
+        setImage(processedFile);
+        setImagePreview(URL.createObjectURL(processedFile));
+      } catch (error) {
+        console.error('Error processing image:', error);
+        setError('Failed to process image. Please try another image.');
       }
     }
   }
