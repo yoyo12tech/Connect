@@ -8,6 +8,7 @@ A modern social networking single-page application built with React 19 + Vite, T
 - Profile data & avatar display
 - Create / view posts
 - Post images & stats section
+- **Automatic image processing** - converts all images (including iPhone HEIC) to JPG format, resizes large images, and compresses for optimal upload
 - Comments with modal & dropdown controls
 - Form validation via React Hook Form + Zod
 - Loading & skeleton states
@@ -109,10 +110,19 @@ Centralize request logic & error handling. Adjust `axios` base URL with env vari
     - This ensures the user sees their new/edited post immediately without reloading the page.
 - Other endpoints and write operations currently rely on standard Axios calls.
 
+## Image Upload Handling
+The app includes robust client-side image processing to ensure compatibility with backend requirements:
+- **Format conversion:** All uploaded images are automatically converted to JPG format (backend requires PNG or JPG)
+- **iPhone compatibility:** Handles HEIC format from iPhone cameras seamlessly
+- **Size optimization:** Large images are automatically resized to a maximum of 1920px on the longest side
+- **Compression:** Images are compressed to 85% quality to reduce upload time and storage
+- **Error handling:** Gracefully handles processing errors with user feedback
+
+This ensures consistent image format delivery to the backend regardless of the user's device or original image format.
+
 ## Future Improvements
 - Real analytics integration
 - Optimistic UI updates for posts/comments
-- Image upload optimization
 - Pagination / infinite scroll
 - Notifications system
 - Accessibility & keyboard navigation enhancements

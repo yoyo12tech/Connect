@@ -74,11 +74,9 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
         const img = new Image();
         
         img.onload = () => {
-          // Create canvas
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
           
-          // Calculate new dimensions (max 1920px on longest side)
           let width = img.width;
           let height = img.height;
           const maxSize = 1920;
@@ -96,14 +94,11 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
           canvas.width = width;
           canvas.height = height;
           
-          // Fill white background (for transparent images)
           ctx.fillStyle = '#FFFFFF';
           ctx.fillRect(0, 0, width, height);
           
-          // Draw image
           ctx.drawImage(img, 0, 0, width, height);
           
-          // Convert to blob
           canvas.toBlob((blob) => {
             const newFileName = file.name.replace(/\.[^/.]+$/, '') + '.jpg';
             const convertedFile = new File([blob], newFileName, {
@@ -111,11 +106,10 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
               lastModified: Date.now()
             });
             resolve(convertedFile);
-          }, 'image/jpeg', 0.85); // 85% quality for good balance
+          }, 'image/jpeg', 0.90); // 
         };
         
         img.onerror = () => {
-          // If image fails to load, try to use original file
           resolve(file);
         };
         
@@ -135,7 +129,6 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
       const file = e.target.files[0];
       
       try {
-        // Process ALL images to ensure compatibility and smaller size
         const processedFile = await processImage(file);
         setImage(processedFile);
         setImagePreview(URL.createObjectURL(processedFile));
