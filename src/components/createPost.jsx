@@ -29,7 +29,6 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
         return await editPost(formData, post._id);
       }
     },
-
     onSuccess: async (data) => {
       if (data.message === "success") {
         if(location.pathname === "/"){
@@ -39,10 +38,7 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
         else{
             queryClient.invalidateQueries({ queryKey: ["myPosts"] });
             console.log("i ran 2")
-
-
         }
-       
         setPostContent('');
         handleRemoveImage();
         setError('');
@@ -70,11 +66,45 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
     if (fileInputRef.current) fileInputRef.current.value = '';
   }
 
-  function handleImageUpload(e) {
+  async function convertImageToJPG(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          
+          canvas.toBlob((blob) => {
+            const convertedFile = new File([blob], file.name.replace(/\.[^/.]+$/, '.jpg'), {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+            resolve(convertedFile);
+          }, 'image/jpeg', 0.9);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function handleImageUpload(e) {
     if (e.target.files.length !== 0) {
       const file = e.target.files[0];
-      setImage(file);
-      setImagePreview(URL.createObjectURL(file));
+      
+      // Convert image to JPG format if it's not already PNG or JPG
+      if (!file.type.match(/image\/(png|jpeg|jpg)/)) {
+        const convertedFile = await convertImageToJPG(file);
+        setImage(convertedFile);
+        setImagePreview(URL.createObjectURL(convertedFile));
+      } else {
+        setImage(file);
+        setImagePreview(URL.createObjectURL(file));
+      }
     }
   }
 
