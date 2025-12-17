@@ -111,7 +111,7 @@ const UserProfileSidebar = () => {
             </div>
               
             {laoding && <span className="loading mx-auto mt-2 loading-dots loading-sm "></span>}
-            {error && <span className="text-sm text-center text-danger"> <i className="fa-solid fa-triangle-exclamation text-danger mr-1 text-sm"></i>Failed to upload. Try again</span>}
+            {error && <span className="text-sm text-center text-danger">Failed to upload. Try again</span>}
 
 
             <div className="text-center">
