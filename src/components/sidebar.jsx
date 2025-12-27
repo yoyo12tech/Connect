@@ -86,7 +86,7 @@ const UserProfileSidebar = () => {
       <aside
         className={`${
           isOpen ? "translate-x-0 border-blue-400 shadow-blue-500 " : " -translate-x-[calc(100%-3.6px)] border-pink-400 shadow-pink-500 "
-        } fixed  top-0  left-0 h-dvh  w-60 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50`}
+        } fixed  top-0  left-0 h-screen  w-60 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50 overflow-y-auto`}
       >
         <div className="flex flex-col h-full p-4">  
           <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-2 ">
