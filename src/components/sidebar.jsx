@@ -89,7 +89,7 @@ const UserProfileSidebar = () => {
         } fixed  top-0  left-0 h-screen  w-60 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50 overflow-y-auto`}
       >
         <div className="flex flex-col h-full p-4">  
-          <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-2 ">
+          <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-0 ">
             <div className="relative group">
                 <div className="rounded-full relative bg-gradient-to-r  from-blue-500 to-pink-500 p-[2px]">
                     <img
@@ -158,7 +158,7 @@ const UserProfileSidebar = () => {
             </ul>
           </nav>
 
-          <div className="mt-auto">
+          <div className="mt-6">
             <p className="text-[15px] text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 <a className="  transition-all duration-300 ease-in-out hover:dark:text-purple-400 hover:text-blue-400" href="https://github.com/yoyo12tech">yoyo12tech</a>
             </p>
