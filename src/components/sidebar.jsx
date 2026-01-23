@@ -88,7 +88,7 @@ const UserProfileSidebar = () => {
           isOpen ? "translate-x-0 border-blue-400 shadow-blue-500 " : " -translate-x-[calc(100%-3.6px)] border-pink-400 shadow-pink-500 "
         } fixed  top-0  left-0 h-screen  w-60 2xl:w-70 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50 overflow-y-auto`}
       >
-        <div className="flex flex-col h-full p-4 2xl:p-1">  
+        <div className="flex flex-col h-full p-4 pb-1 2xl:p-1">  
           <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-0 2xl:pt-7 ">
             <div className="relative group">
                 <div className="rounded-full relative bg-gradient-to-r  from-blue-500 to-pink-500 p-[2px]">
@@ -158,7 +158,7 @@ const UserProfileSidebar = () => {
             </ul>
           </nav>
 
-          <div className="my-4">
+          <div className="mt-4 mb-0" >
             <p className="text-[15px] 2xl:text-lg text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 <a className="  transition-all duration-300 ease-in-out hover:dark:text-purple-400 hover:text-blue-400" href="https://github.com/yoyo12tech">yoyo12tech</a>
             </p>
