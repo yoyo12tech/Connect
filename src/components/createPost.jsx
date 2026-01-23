@@ -163,7 +163,7 @@ export default function CreatePost({ post = null, getAllPosts, mode = "post", se
   }
 
   return (
-    <div className="my-12 bg-gradient-to-r from-blue-400 to-pink-400 w-11/12 sm:w-3/4 md:w-4/12    shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl">
+    <div className="my-12 bg-gradient-to-r from-blue-400 to-pink-400 w-11/12 sm:w-3/4  md:w-116 lg:w-4/12 2xl:w-122 shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl">
       <div className="w-full bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 mx-auto rounded-lg overflow-hidden">
         <div className="p-8">
 
