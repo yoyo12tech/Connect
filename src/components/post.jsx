@@ -44,7 +44,7 @@ export default function Post({post,getPosts,onDelete,postDetails}) {
             :
 
             (
-            <div className=' my-12 bg-gradient-to-r  from-blue-400 to-pink-400 w-11/12 sm:w-3/4 md:w-5/12 2xl:w-4/12  shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl grid-cols-2'>
+            <div className=' my-12 bg-gradient-to-r  from-blue-400 to-pink-400 w-11/12 sm:w-3/4 md:w-4/12    shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl grid-cols-2'>
                 <div className="w-full bg-white dark:bg-gray-950 mx-auto rounded-lg text-gray-900 dark:text-gray-100  overflow-hidden">
                     <div className="p-4 pb-0">
                         <PostHeader post ={post} setmode={setmode} getPosts={getPosts} onDelete={onDelete}/>
