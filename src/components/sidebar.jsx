@@ -69,10 +69,10 @@ const UserProfileSidebar = () => {
 
   return (
     <div className="relative">
-        <div className={` z-60 rounded-r-xl transition-transform duration-100 ease-in-out  fixed -left-0.5 top-18.5 ${isOpen ? "translate-x-52.5  rotate-180" : " translate-x-0" }  p-[2px] bg-gradient-to-r from-blue-400 to-pink-400 `}>
+        <div className={`2xl:mt-3 z-60 rounded-r-xl transition-transform duration-100 ease-in-out  fixed -left-0.5 top-18.5 ${isOpen ? "translate-x-52.5 2xl:translate-x-61.5 rotate-180" : " translate-x-0" }  p-[2px] bg-gradient-to-r from-blue-400 to-pink-400 `}>
             <button
                 onClick={toggleSidebar}
-                className="  rounded-r-xl flex items-center justify-center w-4 h-4 p-3.5 group  bg-white group text-gray-800 dark:text-gray-200 dark:bg-black "
+                className="  rounded-r-xl flex items-center justify-center w-4 h-4 2xl:w-4 2xl:h-4 p-3.5 2xl:p-4 group  bg-white group text-gray-800 dark:text-gray-200 dark:bg-black "
                 aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
             >
               
@@ -86,10 +86,10 @@ const UserProfileSidebar = () => {
       <aside
         className={`${
           isOpen ? "translate-x-0 border-blue-400 shadow-blue-500 " : " -translate-x-[calc(100%-3.6px)] border-pink-400 shadow-pink-500 "
-        } fixed  top-0  left-0 h-screen  w-60 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50 overflow-y-auto`}
+        } fixed  top-0  left-0 h-screen  w-60 2xl:w-70 pt-24 dark:bg-black bg-white text-black dark:text-white border-r-4  rounded-tr-sm shadow-xl   transition-transform duration-100 ease-in-out z-50 overflow-y-auto`}
       >
-        <div className="flex flex-col h-full p-4">  
-          <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-0 ">
+        <div className="flex flex-col h-full p-4 2xl:p-1">  
+          <div className="flex flex-col m-6 items-center top-0 *:ms-center  pb-2 pt-0 2xl:pt-7 ">
             <div className="relative group">
                 <div className="rounded-full relative bg-gradient-to-r  from-blue-500 to-pink-500 p-[2px]">
                     <img
@@ -97,7 +97,7 @@ const UserProfileSidebar = () => {
                         src={img?.startsWith("blob:") || img?.startsWith("http") ? img : `https://${img}`}
                         ref={imgRef}
                         alt="Profile"
-                        className="w-24 h-24  rounded-full object-cover  transition-all duration-300"
+                        className="w-24 h-24 2xl:w-27 2xl:h-27 rounded-full object-cover  transition-all duration-300"
                     />
                 </div>
               
@@ -115,26 +115,26 @@ const UserProfileSidebar = () => {
 
 
             <div className="text-center">
-              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-1.5">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{User.name}</h2>
+              <div className="flex items-center justify-center gradient-color space-x-2 mt-3 mb-1.5 2xl:mb-3">
+                <h2 className="text-xl 2xl:text-2xl font-semibold text-gray-900 dark:text-gray-100">{User.name}</h2>
               </div>
               
-              <div className="flex items-center justify-center space-x-2 mb-1.5">
-                <i className="fa-regular fa-envelope gradient-color text-md"></i>
-                <p className="text-sm text-gray-900 dark:text-gray-100">{User.email}</p>
+              <div className="flex items-center justify-center space-x-2 mb-1.5 2xl:mb-2">
+                <i className="fa-regular fa-envelope gradient-color text-md 2xl:text-lg"></i>
+                <p className="text-sm 2xl:text-lg  text-gray-900 dark:text-gray-100">{User.email}</p>
               </div>
               
               <div className="flex items-center justify-center space-x-2">
-                <i className="fa-regular fa-calendar gradient-color text-md "></i>
-                <p className="text-sm text-gray-900 dark:text-gray-100">{User.dob}</p>
+                <i className="fa-regular fa-calendar gradient-color text-md 2xl:text-lg "></i>
+                <p className="text-sm 2xl:text-lg text-gray-900 dark:text-gray-100">{User.dob}</p>
               </div>
             </div>
           </div>
 
         <div className="bg-gradient-to-r from-blue-500 to-pink-500 h-0.5 "></div>
 
-          <nav className="flex-1 mt-6">
-            <ul className="space-y-2">
+          <nav className="flex-1 mt-6 2xl:mt-8">
+            <ul className="space-y-2 2xl:space-y-4 2xl:px-2.5">
               {navigationLinks.map((link) => {
                   const isActive = location.pathname.includes(link.dest); // or use === if exact match is needed
 
@@ -142,7 +142,7 @@ const UserProfileSidebar = () => {
                     <li key={link.id}>
                       <button
                           onClick={() => navigate(`/${link.dest}`)}
-                          className={`w-full flex items-center px-4 py-2 rounded-md transition-colors duration-200 ${
+                          className={`w-full 2xl:text-xl flex items-center px-4 py-2 2xl:px-4 2xl:py-3  rounded-md transition-colors duration-200 ${
                             isActive
                               ? "bg-gray-200 dark:bg-gray-900 text-black dark:text-white"
                               : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-900"
@@ -159,7 +159,7 @@ const UserProfileSidebar = () => {
           </nav>
 
           <div className="my-4">
-            <p className="text-[15px] text-gray-800 dark:text-gray-300 text-start ml-3">
+            <p className="text-[15px] 2xl:text-lg text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 <a className="  transition-all duration-300 ease-in-out hover:dark:text-purple-400 hover:text-blue-400" href="https://github.com/yoyo12tech">yoyo12tech</a>
             </p>
           </div>
