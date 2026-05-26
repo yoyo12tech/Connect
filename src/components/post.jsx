@@ -1,4 +1,5 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useRef} from 'react'
+import { getPostComments } from '../services/commentService'
 import { Button } from '@heroui/react';
 import PostHeader from '../components/postHeader'
 import PostBody from '../components/postBody'
@@ -12,9 +13,20 @@ import CreatePost from './createPost';
 export default function Post({post,getPosts,onDelete,postDetails}) {
     const [showComments, setShowComments] = useState(false);
     const [mode, setmode] = useState('post');
-    const [commentCount, setCommentCount] = useState(post.comments?.length);
+    const [commentCount, setCommentCount] = useState(post.commentsCount ?? 0);
     const [visibleComments, setVisibleComments] = useState(1);
-    const [comments, setComments] = useState(post.comments);
+    const [comments, setComments] = useState([]);
+    const commentsLoaded = useRef(false);
+    const borderRef = useRef(null);
+    const [showSweep, setShowSweep] = useState(false);
+
+    useEffect(() => {
+        const obs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setShowSweep(true); obs.disconnect(); }
+        }, { threshold: 1.0 });
+        if (borderRef.current) obs.observe(borderRef.current);
+        return () => obs.disconnect();
+    }, []);
 
     function moreComments(){
         if(visibleComments +3 <= commentCount){
@@ -26,8 +38,19 @@ export default function Post({post,getPosts,onDelete,postDetails}) {
     }
 
     useEffect(() => {
+        if (!showComments || commentsLoaded.current) return;
+        commentsLoaded.current = true;
+        getPostComments(post._id).then(res => {
+            if (res.message === "success") {
+                setComments(res.comments ?? []);
+                setCommentCount(res.comments?.length ?? commentCount);
+            }
+        });
+    }, [showComments]);
+
+    useEffect(() => {
       if (postDetails){
-        setVisibleComments(post.comments?.length);
+        setVisibleComments(post.commentsCount ?? 0);
         setShowComments(true);
       }
     }, [])
@@ -44,7 +67,8 @@ export default function Post({post,getPosts,onDelete,postDetails}) {
             :
 
             (
-            <div className=' my-12 bg-gradient-to-r  from-blue-400 to-pink-400 w-11/12 sm:w-3/4 md:w-116 lg:w-4/12 2xl:w-122 shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl grid-cols-2'>
+            <div ref={borderRef} className='relative overflow-hidden my-12 bg-gradient-to-r from-blue-400 to-pink-400 w-11/12 sm:w-3/4 md:w-116 lg:w-4/12 2xl:w-122 shadow-lg dark:shadow-gray-800 pt-1 p-0 mx-auto rounded-xl grid-cols-2'>
+                {showSweep && <div className="post-bottom-sweep" onAnimationEnd={() => setShowSweep(false)} />}
                 <div className="w-full bg-white dark:bg-gray-950 mx-auto rounded-lg text-gray-900 dark:text-gray-100  overflow-hidden">
                     <div className="p-4 pb-0">
                         <PostHeader post ={post} setmode={setmode} getPosts={getPosts} onDelete={onDelete}/>

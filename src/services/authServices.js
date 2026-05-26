@@ -5,28 +5,22 @@ const baseUrl =  import.meta.env.VITE_API_BASE
 export async function registerApi (formData){
     try{
         const {data} = await axios.post(baseUrl+"users/signup",formData);
-        console.log(data);
-        return data;
-
+        return { message: data.success ? "success" : data.message, ...data.data };
     }
     catch(error){
-        console.log(error);
-        return error.response.data;
-
-
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message, errors: errData.errors };
     }
 }
 
 export async function loginApi (formData){
     try{
         const {data} = await axios.post(baseUrl+"users/signin",formData);
-        console.log(data);
-        return data;
-
+        return { message: data.success ? "success" : data.message, token: data.data?.token, user: data.data?.user };
     }
     catch(error){
-        console.log(error);
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message, errors: errData.errors };
     }
 }
 
@@ -37,14 +31,14 @@ export async function getLoggedUserDataApi(){
                 token:localStorage.getItem("token")
             }
         })
-        console.log(data);
-        return data;
+        return { message: data.success ? "success" : data.message, user: data.data?.user };
     }
     catch(error){
-        return error.response.data
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
+}
 
-} 
 export async function uploadProfilePic(formData){
     try{
         const { data } = await axios.put(baseUrl+'users/upload-photo',formData,{
@@ -52,14 +46,14 @@ export async function uploadProfilePic(formData){
                 token:localStorage.getItem("token")
             }
         })
-        console.log(data);
-        return data;
+        return { message: data.success ? "success" : data.message, ...data.data };
     }
     catch(error){
-        return error.response.data
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
+}
 
-} 
 export async function getUserPosts(userId){
     try{
         const { data } = await axios.get(baseUrl+'users/'+userId+'/posts',{
@@ -67,14 +61,13 @@ export async function getUserPosts(userId){
                 token:localStorage.getItem("token")
             }
         })
-        console.log(data);
-        return data;
+        return { message: data.success ? "success" : data.message, posts: data.data?.posts };
     }
     catch(error){
-        return error.response.data
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
-
-} 
+}
 
 export async function getMyPosts(userId){
     const { data } = await axios.get(baseUrl+'users/'+userId+'/posts',{
@@ -82,10 +75,9 @@ export async function getMyPosts(userId){
             token:localStorage.getItem("token")
         }
     })
-    console.log(data);
-    return data;
+    return { message: data.success ? "success" : data.message, posts: data.data?.posts };
+}
 
-} 
 export async function changePassword(formData){
     try{
         const { data } = await axios.patch(baseUrl+'users/change-password',formData,{
@@ -93,11 +85,10 @@ export async function changePassword(formData){
                 token:localStorage.getItem("token")
             }
         })
-        console.log(data);
-        return data;
+        return { message: data.success ? "success" : data.message, token: data.data?.token };
     }
     catch(error){
-        return error.response.data
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message, errors: errData.errors };
     }
-
-} 
+}

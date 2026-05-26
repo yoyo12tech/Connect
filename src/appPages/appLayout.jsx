@@ -3,7 +3,7 @@ import Header from '../components/header'
 
 function AppLayout(){
     return(
-        <div className=" min-h-dvh bg-white dark:bg-black">
+        <div className="min-h-dvh bg-white dark:bg-black">
             <Header/>
             <Outlet/>
         </div>

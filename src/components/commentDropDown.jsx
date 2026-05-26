@@ -11,7 +11,7 @@ export default function DropDownComponent({setCommentMode,postId,post,comment,se
     e.stopPropagation(); 
     setloading(true);
 
-    const response = await deleteComment(comment._id);
+    const response = await deleteComment(comment._id, postId);
 
     if(response.message == "success"){
         let res = await getPostComments(postId);

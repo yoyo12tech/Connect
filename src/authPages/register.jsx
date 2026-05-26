@@ -41,15 +41,15 @@ function Register(){
         
     return(
         <>
-            <div className=" flex flex-col justify-center mx-auto  md:w-1/2 w-11/12  h-full align-items-center my-auto">
+            <div className="flex flex-col justify-center mx-auto md:w-5/6 w-11/12 h-full align-items-center my-auto">
                 <h1 className="text-5xl w-full h-21 mb-2 bg-gradient-to-b from-blue-400 to-pink-400   bg-clip-text  text-center text-transparent fw-bold ">Sign Up</h1>
-                    <form onSubmit={handleSubmit(HandleRegister)} className=" flex flex-col justify-center align-items-center *:mb-4 w-full mx-auto px-1 md:px-25">
-                        <Input className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.name)} errorMessage={errors.name?.message} label="Name" type="text"  variant="bordered" {...register('name')} />
-                        <Input className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.email)} errorMessage={errors.email?.message} label="Email" type="email"  variant="bordered" {...register('email')} />
-                        <Input className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.password)} errorMessage={errors.password?.message}  label="Password" type="password" variant="bordered" {...register('password')} />
-                        <Input className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.rePassword)} errorMessage={errors.rePassword?.message}  label="Confrim Password" type="password" variant="bordered" {...register('rePassword')} />
-                        <Input className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.dateOfBirth)} errorMessage={errors.dateOfBirth?.message}  label="Date" type="date"  variant="bordered" {...register('dateOfBirth')}/>
-                        <Select isInvalid={Boolean(errors.gender)} errorMessage={errors.gender?.message}  variant='bordered' label="Gender" {...register("gender")}>
+                    <form onSubmit={handleSubmit(HandleRegister)} className="flex flex-col justify-center align-items-center *:mb-4 w-full mx-auto px-2 md:px-10">
+                        <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.name)} errorMessage={errors.name?.message} label="Name" type="text"  variant="bordered" {...register('name')} />
+                        <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.email)} errorMessage={errors.email?.message} label="Email" type="email"  variant="bordered" {...register('email')} />
+                        <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.password)} errorMessage={errors.password?.message}  label="Password" type="password" variant="bordered" {...register('password')} />
+                        <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.rePassword)} errorMessage={errors.rePassword?.message}  label="Confrim Password" type="password" variant="bordered" {...register('rePassword')} />
+                        <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.dateOfBirth)} errorMessage={errors.dateOfBirth?.message}  label="Date" type="date"  variant="bordered" {...register('dateOfBirth')}/>
+                        <Select size="lg" isInvalid={Boolean(errors.gender)} errorMessage={errors.gender?.message}  variant='bordered' label="Gender" {...register("gender")}>
                             <SelectItem className="!text-gray-800 dark:!text-gray-200" key={"male"}>Male</SelectItem>
                             <SelectItem className="!text-gray-800 dark:!text-gray-200" key={"female"}>Female</SelectItem>
                         </Select>

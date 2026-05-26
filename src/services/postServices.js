@@ -4,22 +4,22 @@ const baseUrl =  import.meta.env.VITE_API_BASE
 export async function getAllPosts()
 {
     try{
-        const{data} = await axios.get(baseUrl + "posts?sort=-createdAt",{
+        const{data} = await axios.get(baseUrl + "posts",{
             headers:{
                 token:localStorage.getItem("token")
             }
         })
-
-        return data;
+        return { message: data.success ? "success" : data.message, posts: data.data?.posts };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
 export async function getDaPosts({ pageParam = 1 }) {
   const { data } = await axios.get(
-    baseUrl + `posts?sort=-createdAt&page=${pageParam}`,
+    baseUrl + `posts?page=${pageParam}`,
     {
       headers: {
         token: localStorage.getItem("token"),
@@ -27,8 +27,9 @@ export async function getDaPosts({ pageParam = 1 }) {
     }
   );
 
-  return data; // must include { paginationInfo, posts }
+  return { posts: data.data?.posts, paginationInfo: data.meta?.pagination };
 }
+
 export async function getSinglePost(postId)
 {
     try{
@@ -37,11 +38,11 @@ export async function getSinglePost(postId)
                 token:localStorage.getItem("token")
             }
         })
-
-        return data;
+        return { message: data.success ? "success" : data.message, post: data.data?.post };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
@@ -52,10 +53,11 @@ export async function addPost(formData){
                 token:localStorage.getItem("token")
             }
         })
-        return data;
+        return { message: data.success ? "success" : data.message, ...data.data };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
@@ -66,10 +68,11 @@ export async function editPost(formData , postId){
                 token:localStorage.getItem("token")
             }
         })
-        return data;
+        return { message: data.success ? "success" : data.message, ...data.data };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
@@ -80,10 +83,10 @@ export async function deletePost(postId){
                 token:localStorage.getItem("token")
             }
         })
-        return data;
+        return { message: data.success ? "success" : data.message };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
-

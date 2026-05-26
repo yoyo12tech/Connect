@@ -1,6 +1,6 @@
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@heroui/react";
 import { Link,useLocation,useNavigate} from "react-router-dom";
-import { useContext,useState } from "react";
+import { useContext,useState,useEffect,useRef } from "react";
 import { authContext } from "../context/authContext";
 
 
@@ -9,6 +9,19 @@ export default function Header() {
     const [open, setopen] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
+    const [visible, setVisible] = useState(true);
+    const lastY = useRef(0);
+    useEffect(() => {
+        const onScroll = () => {
+            const y = window.scrollY;
+            if (y < 10) setVisible(true);
+            else if (y < lastY.current - 8) setVisible(true);
+            else if (y > lastY.current + 8) setVisible(false);
+            lastY.current = y;
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     function toggle(){
       document.documentElement.classList.toggle("dark");
@@ -29,7 +42,9 @@ export default function Header() {
 
   return (
     <>
-      <Navbar shouldHideOnScroll className="py-0 2xl:py-1.5 overflow-hidden shadow-md shadow-gray-300/75 dark:shadow-gray-800/75 position-relative z-[600] ">
+      <div className="h-[64px] 2xl:h-[72px] shrink-0" />
+      <div className={`fixed top-0 left-0 right-0 z-[600] transition-transform duration-300 ease-in-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <Navbar className="py-0 2xl:py-1.5 overflow-hidden shadow-md shadow-gray-300/75 dark:shadow-gray-800/75">
         <NavbarBrand className="  cursor-pointer" onClick={()=>navigate('/')} >
           <i className=" fa-solid fa-circle-nodes mt-1 2xl:mt-2 mr-1 p-1 fa-shake duration-1000 font-bold text-2xl 2xl:text-3xl bg-gradient-to-tr from-blue-400 to-pink-400 text-transparent bg-clip-text"></i>
           <p className="  font-bold text-2xl 2xl:text-3xl  bg-gradient-to-tr from-blue-400 to-pink-400 text-transparent bg-clip-text">Connect</p>
@@ -101,6 +116,7 @@ export default function Header() {
         </div>
 
       </Navbar>
+      </div>
 
       {
         <>

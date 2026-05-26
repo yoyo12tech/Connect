@@ -8,72 +8,59 @@ export async function getPostComments(postId){
                 token:localStorage.getItem("token")
             }
         })
-        return data;
+        return { message: data.success ? "success" : data.message, comments: data.data?.comments };
     }
     catch(error){
-        return error.response.data;
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
 export async function addComment(commentContent, postId){
     try{
-        const {data} = await axios.post(baseUrl + 'comments',{
-            content:commentContent,
-            post:postId
+        const {data} = await axios.post(baseUrl + 'posts/' + postId + '/comments',{
+            content: commentContent,
         },{
             headers:{
                 token:localStorage.getItem("token")
             }
         })
-        return data
+        return { message: data.success ? "success" : data.message, comment: data.data?.comment }
     }
     catch(error){
-        return error.response.data
-    }
-}
-export async function editComment(commentContent, commentId){
-    try{
-        const{data}=await axios.put(baseUrl + 'comments/' + commentId,{
-            content:commentContent
-        },{
-            headers:{
-                token:localStorage.getItem("token")
-            }
-        })
-        return data;
-    }
-    catch(error){
-        return error.response.data;
-    }
-}
-export async function deleteComment(commentId){
-    try{
-        const token = localStorage.getItem("token");
-        const url = baseUrl + 'comments/' + commentId;
-        
-        // ✅ Debug the request
-        console.log("🗑️ Attempting to delete:");
-        console.log("URL:", url);
-        console.log("Comment ID:", commentId);
-        console.log("Token exists:", !!token);
-        console.log("Token length:", token?.length);
-        
-        const{data}=await axios.delete(url, {
-            headers:{
-                token: token
-            }
-        });
-        
-        console.log("✅ Delete successful:", data);
-        return data;
-    }
-    catch(error){
-        console.error("❌ Delete failed:");
-        console.error("Status:", error.response?.status);
-        console.error("Error message:", error.response?.data?.message);
-        console.error("Full error:", error.response?.data);
-        
-        return error.response?.data || { message: "error", error: "Request failed" };
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
     }
 }
 
+export async function editComment(commentContent, commentId, postId){
+    try{
+        const{data}=await axios.put(baseUrl + 'posts/' + postId + '/comments/' + commentId,{
+            content: commentContent
+        },{
+            headers:{
+                token:localStorage.getItem("token")
+            }
+        })
+        return { message: data.success ? "success" : data.message };
+    }
+    catch(error){
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
+    }
+}
+
+export async function deleteComment(commentId, postId){
+    try{
+        const{data}=await axios.delete(baseUrl + 'posts/' + postId + '/comments/' + commentId,{
+            headers:{
+                token: localStorage.getItem("token")
+            }
+        });
+        return { message: data.success ? "success" : data.message };
+    }
+    catch(error){
+        const errData = error.response?.data || {};
+        return { message: errData.message, error: (Array.isArray(errData.errors) ? errData.errors[0] : errData.errors) || errData.message };
+    }
+}

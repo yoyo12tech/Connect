@@ -159,7 +159,7 @@ const UserProfileSidebar = () => {
           </nav>
 
           <div className="mt-4 mb-0" >
-            <p className="text-[15px] 2xl:text-lg text-gray-800 dark:text-gray-300 text-start ml-3">
+            <p className="text-[15px] 2xl:text-md text-gray-800 dark:text-gray-300 text-start ml-3">
               ©2025 <a className="  transition-all duration-300 ease-in-out hover:dark:text-purple-400 hover:text-blue-400" href="https://github.com/yoyo12tech">yoyo12tech</a>
             </p>
           </div>

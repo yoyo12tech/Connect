@@ -22,7 +22,7 @@ export default function postComment({postId, setComments,setCommentCount,setComm
         let response=null;
 
         if(commentmode == "edit"){
-            response = await editComment(comment,oldComment._id)
+            response = await editComment(comment,oldComment._id,postId)
             if(response.message=="success"){
                 let res = await getPostComments(postId);
                 if(res.message=="success"){
@@ -39,7 +39,7 @@ export default function postComment({postId, setComments,setCommentCount,setComm
         else{
             response = await addComment(comment, postId);
             if(response.message=="success"){
-                setComments(response.comments)
+                setComments(prev => [...prev, response.comment])
                 setCommentCount(prev => prev + 1)
                 setComment('');
                 setLoading(false);

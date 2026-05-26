@@ -4,13 +4,12 @@ import Sidebar from '../components/sidebar'
 
 function AccountLayout(){
     return(
-        <div className=" min-h-dvh bg-white dark:bg-black">
+        <div className="min-h-dvh bg-white dark:bg-black">
             <Header/>
             <Sidebar/>
             <div className="">
                 <Outlet/>
             </div>
-            
         </div>
     )
 }

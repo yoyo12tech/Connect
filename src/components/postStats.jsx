@@ -71,7 +71,7 @@ export default function postStats({post,setShowComments,showComments,commentCoun
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={[handleSave,notify]}
+                onClick={() => { handleSave(); notify(); }}
                 className={`${saved ? 'text-blue-700' : 'text-gray-500 dark:text-gray-300'}`}
             >
             <FaBookmark />
