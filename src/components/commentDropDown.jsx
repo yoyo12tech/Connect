@@ -5,14 +5,9 @@ import { deleteComment,getPostComments } from "../services/commentService";
 export default function DropDownComponent({setCommentMode,postId,post,comment,setComments, setCommentCount}) {
   const [loading, setloading] = useState(false)
 
-  async function delComment(e){
-
-    e.preventDefault();
-    e.stopPropagation(); 
+  async function delComment(){
     setloading(true);
-
     const response = await deleteComment(comment._id, postId);
-
     if(response.message == "success"){
         let res = await getPostComments(postId);
         if(res.message=="success"){
@@ -22,6 +17,7 @@ export default function DropDownComponent({setCommentMode,postId,post,comment,se
         }
     }
   }
+
   const items = [
     {
       key: "edit",
@@ -42,7 +38,7 @@ export default function DropDownComponent({setCommentMode,postId,post,comment,se
   return (
     <>
         <Dropdown>
-        <DropdownTrigger  className="h-2">
+        <DropdownTrigger className="h-2">
             <span className="text-3xl cursor-pointer">…</span>
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions" items={items}>
@@ -51,32 +47,17 @@ export default function DropDownComponent({setCommentMode,postId,post,comment,se
                 key={item.key}
                 className={item.key === "delete" ? "text-danger" : "text-gray-700 dark:text-gray-300"}
                 color={item.key === "delete" ? "danger" : "default"}
+                onPress={item.key === "delete" ? delComment : () => setCommentMode("edit")}
             >
-                {item.key=="delete"? 
-                    <>
-                        {post.user._id == comment.commentCreator._id && <span onClick={delComment}> 
-                            {loading ? <span className="loading mr-1 loading-infinity loading-sm"></span> : <i className={item.icon}></i>}
-                            {item.label}
-                        </span>}
-
-                    </>
-
-                    :
-                    
-                        <span onClick={()=>{setCommentMode("edit")}}>
-                            <i className={item.icon}></i>
-                            {item.label}
-                        </span>
-                
-                    }
-                
+                {item.key === "delete" && loading
+                    ? <span className="loading mr-1 loading-infinity loading-sm"></span>
+                    : <i className={item.icon}></i>
+                }
+                {item.label}
             </DropdownItem>
             )}
         </DropdownMenu>
         </Dropdown>
-
-
     </>
-
   );
 }

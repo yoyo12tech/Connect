@@ -19,8 +19,10 @@ function AuthLayout(){
                 {/* Connect logo */}
                 <div className="relative z-10 flex flex-col items-center justify-center pt-10 pb-2">
                     <div className="flex items-center gap-2 mb-2">
-                        <i className="fa-solid fa-circle-nodes fa-shake text-5xl bg-gradient-to-tr from-blue-400 to-pink-400 bg-clip-text text-transparent" />
+                        <i className="fa-solid fa-circle-nodes  text-5xl bg-gradient-to-tr from-blue-400 to-pink-400 bg-clip-text text-transparent" />
                         <span className="font-bold text-5xl bg-gradient-to-tr from-blue-400 to-pink-400 bg-clip-text text-transparent">Connect</span>
+                        <i className="fa-solid fa-circle-nodes  text-5xl bg-gradient-to-tr from-blue-400 to-pink-400 bg-clip-text text-transparent" />
+
                     </div>
                     <p className="text-xs sm:text-sm md:text-sm lg:text-base mt-2 text-gray-400 dark:text-gray-500 tracking-wide text-center px-4 sm:px-6 max-w-xs sm:max-w-sm">Connect with people, share your moments, and discover stories that matter to you.</p>
                 </div>

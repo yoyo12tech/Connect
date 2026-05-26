@@ -3,7 +3,7 @@ import { Button } from '@heroui/react';
 import {addComment,editComment,getPostComments} from '../services/commentService'
 
 
-export default function postComment({postId, setComments,setCommentCount,setCommentmode,oldComment,commentmode}) {
+export default function postComment({postId, setComments,setCommentCount,setCommentmode,oldComment,commentmode,setVisibleComments}) {
     const [loading, setLoading] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -41,6 +41,7 @@ export default function postComment({postId, setComments,setCommentCount,setComm
             if(response.message=="success"){
                 setComments(prev => [...prev, response.comment])
                 setCommentCount(prev => prev + 1)
+                setVisibleComments?.(prev => prev + 1)
                 setComment('');
                 setLoading(false);
 

@@ -79,7 +79,7 @@ export default function Post({post,getPosts,onDelete,postDetails}) {
                     {showComments && (
                         <>
 
-                            <AddComment postId={post._id} setComments={setComments} commentmode={'post'} setCommentCount={setCommentCount} />
+                            <AddComment postId={post._id} setComments={setComments} commentmode={'post'} setCommentCount={setCommentCount} setVisibleComments={setVisibleComments} />
 
 
                             {commentCount > 0 && (

@@ -29,25 +29,10 @@ export default function DropDownComponent({setmode,post,getPosts,onDelete}) {
                 key={item.key}
                 className={item.key === "delete" ? "text-danger" : "text-gray-700 dark:text-gray-300"}
                 color={item.key === "delete" ? "danger" : "default"}
+                onPress={item.key === "delete" ? onOpen : () => setmode("edit")}
             >
-                {item.key=="delete"? 
-                    <>
-                        <span onClick={onOpen}> 
-                            <i className={item.icon}></i>
-                            {item.label}
-                        </span>
-
-                    </>
-
-                    :
-                    
-                        <span onClick={()=>{setmode("edit")}}>
-                            <i className={item.icon}></i>
-                            {item.label}
-                        </span>
-                
-                    }
-                
+                <i className={item.icon}></i>
+                {item.label}
             </DropdownItem>
             )}
         </DropdownMenu>
