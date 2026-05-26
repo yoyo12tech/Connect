@@ -53,7 +53,6 @@ function Login(){
     return(
         <>
             <div className="flex flex-col justify-center mx-auto md:w-5/6 w-11/12 h-full align-items-center my-auto">
-                <h1 className="text-5xl w-full h-21 mb-2 bg-gradient-to-b from-blue-400 to-pink-400   bg-clip-text  text-center text-transparent fw-bold ">Log In</h1>
                     <form onSubmit={handleSubmit(HandleLogin)} className="flex flex-col justify-center align-items-center *:mb-4 w-full mx-auto px-2 md:px-10">
                         <Input size="lg" classNames={{
                             input: "text-gray-800 dark:text-gray-200",
@@ -65,7 +64,7 @@ function Login(){
                         </p>
                           
                         <p className="text-danger mb-2 mx-auto">{error}</p>
-                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Submit</Button>
+                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Login</Button>
 
 
 

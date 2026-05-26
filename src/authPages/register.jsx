@@ -42,7 +42,6 @@ function Register(){
     return(
         <>
             <div className="flex flex-col justify-center mx-auto md:w-5/6 w-11/12 h-full align-items-center my-auto">
-                <h1 className="text-5xl w-full h-21 mb-2 bg-gradient-to-b from-blue-400 to-pink-400   bg-clip-text  text-center text-transparent fw-bold ">Sign Up</h1>
                     <form onSubmit={handleSubmit(HandleRegister)} className="flex flex-col justify-center align-items-center *:mb-4 w-full mx-auto px-2 md:px-10">
                         <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.name)} errorMessage={errors.name?.message} label="Name" type="text"  variant="bordered" {...register('name')} />
                         <Input size="lg" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.email)} errorMessage={errors.email?.message} label="Email" type="email"  variant="bordered" {...register('email')} />
@@ -56,7 +55,7 @@ function Register(){
                         <p className="text-blue-500 dark:text-blue-400">Already have an account? 
                             <Link className="bg-gradient-to-b from-blue-400 to-pink-400   bg-clip-text  text-center text-transparent fw-bold  hover:from-blue-300 hover:to-pink-300" to={"/login"}> Log In</Link>
                         </p>
-                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Submit</Button>
+                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Register</Button>
 
                     </form>
             </div>
