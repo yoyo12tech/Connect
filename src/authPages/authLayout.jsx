@@ -1,5 +1,5 @@
 import {Outlet} from 'react-router-dom';
-import bgImg from '../assets/wp1.webp';
+import bgImg from '../assets/wp2.jpg';
 function AuthLayout(){
     return(
         <div className='bg-white dark:bg-black h-full min-h-dvh flex justify-between align-items-center relative'>
