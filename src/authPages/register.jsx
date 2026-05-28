@@ -62,7 +62,7 @@ function Register(){
                         <p className="text-blue-500 dark:text-blue-400 text-md">Already have an account? 
                             <Link className="bg-gradient-to-b text-md from-blue-500 to-pink-500   bg-clip-text  text-center text-transparent fw-bold  hover:from-blue-600 hover:to-pink-600" to={"/login"}> Log In</Link>
                         </p>
-                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Register</Button>
+                        <Button isLoading={loading} type="submit" className=" cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-500 to-pink-500  text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Register</Button>
 
                     </form>
             </div>
