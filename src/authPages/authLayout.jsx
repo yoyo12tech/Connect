@@ -6,7 +6,7 @@ function AuthLayout(){
             <div className=' md:w-1/2 absolute md:relative' style={{backgroundImage:`url(${bgImg})`, backgroundSize:"cover", backgroundPosition:"center center", backgroundRepeat:"no-repeat", minHeight:"100dvh"}}></div>
             <div className="relative flex-1 flex flex-col overflow-hidden">
                 {/* blobs — right half only */}
-                <div className="absolute inset-0 pointer-events-none z-0">
+                <div className="md:hidden absolute inset-0 pointer-events-none z-0">
                     <div className="blob-1 absolute top-[4%]   left-[8%]  w-[100px] h-[100px] rounded-full bg-blue-400/80 dark:bg-blue-400/55 blur-[50px]" />
                     <div className="blob-2 absolute top-[6%]   right-[8%] w-[90px]  h-[90px]  rounded-full bg-pink-400/80 dark:bg-pink-400/55 blur-[45px]" />
                     <div className="blob-3 absolute top-[28%]  left-[5%]  w-[110px] h-[110px] rounded-full bg-pink-400/75 dark:bg-pink-400/50 blur-[55px]" />
