@@ -54,12 +54,12 @@ function ChangePass(){
     return(
         <>
             <div className="flex flex-col justify-center mx-auto md:w-2/5 w-11/12 h-full align-items-center my-auto mt-[18dvh]">
-                <h1 className="text-4xl w-full mb-6 bg-gradient-to-b from-blue-400 to-pink-400 bg-clip-text text-center text-transparent fw-bold">Reset Password</h1>
+                <h1 className="text-4xl w-full mb-6 bg-gradient-to-b from-blue-500 to-pink-500 bg-clip-text text-center text-transparent fw-bold">Reset Password</h1>
                 <form onSubmit={handleSubmit(HandleChangePass)} className="flex flex-col justify-center align-items-center *:mb-4 w-full mx-auto px-2 md:px-4">
                     <Input size="md" className="!text-gray-800 dark:!text-gray-200" isInvalid={Boolean(errors.password)} errorMessage={errors.password?.message} label="Old Password" type="password" variant="bordered" {...register('password')} />
                     <Input size="md" classNames={{ input:"text-gray-800 dark:text-gray-200", inputWrapper:"text-gray-800 dark:text-gray-200" }} isInvalid={Boolean(errors.newPassword)} errorMessage={errors.newPassword?.message} label="New Password" type="password" variant="bordered" {...register('newPassword')} />
                     <p className="text-danger mb-2 mx-auto">{error}</p>
-                    <Button isLoading={loading} type="submit" className="cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-400 to-pink-400 text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Reset Password</Button>
+                    <Button isLoading={loading} type="submit" className="cursor-pointer bg-gradient-to-br rounded mx-auto from-blue-500 to-pink-500 text-white w-fit text-[1.2rem] px-9 py-2 transition duration-700 ease-in-out hover:from-blue-600 hover:to-pink-600">Reset Password</Button>
                 </form>
             </div>
         </>
